@@ -8,22 +8,21 @@ window.onload = () => {
 
 
     for (var i = 0; i < boxes.length; i++) {
-        boxes[i].addEventListener('click',  (elem) => onclick(elem.currentTarget), false);
+        boxes[i].addEventListener('click',  (elem) => onclick(elem.currentTarget));
     }
 }
 
 function onclick(elem)
 {   
- 
-    if (elem.textContent==0){
+    if (elem.textContent)
+        return;
+    
         if (ifzero == false){
             elem.textContent = 'x';
             ifzero = true;
          }  else {
             elem.textContent = 'o';
             ifzero = false;
-         }}  else {
-            
          }
     
    
