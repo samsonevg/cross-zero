@@ -1,7 +1,17 @@
-const area = document.getElementById('area');
+"use strict";
 
-area.addEventListener('click', e=> {
-    if(e.target.className = 'box') {
-        alert('123');
+let boxes;
+
+window.onload = () => {
+    boxes = document.getElementsByClassName("box");
+
+
+    for (var i = 0; i < boxes.length; i++) {
+        boxes[i].addEventListener('click',  (elem) => onclick(elem.currentTarget), false);
     }
-})
+}
+
+function onclick(elem)
+{
+    alert("test: " + elem.textContent);
+}
