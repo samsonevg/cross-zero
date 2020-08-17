@@ -14,16 +14,15 @@ window.onload = () => {
 
 function onclick(elem)
 {   
- 
-    if (elem.textContent==0){
+    if (elem.textContent)
+        return;
+    
         if (ifzero == false){
             elem.textContent = 'x';
             ifzero = true;
          }  else {
             elem.textContent = 'o';
             ifzero = false;
-         }}  else {
-            
          }
     
    
