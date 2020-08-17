@@ -8,7 +8,7 @@ window.onload = () => {
 
 
     for (var i = 0; i < boxes.length; i++) {
-        boxes[i].addEventListener('click',  (elem) => onclick(elem.currentTarget), false);
+        boxes[i].addEventListener('click',  (elem) => onclick(elem.currentTarget));
     }
 }
 
