@@ -1,6 +1,7 @@
 "use strict";
 
 let boxes;
+let ifzero = false;
 
 window.onload = () => {
     boxes = document.getElementsByClassName("box");
@@ -12,6 +13,12 @@ window.onload = () => {
 }
 
 function onclick(elem)
-{
+{   
+    if (ifzero == false){
     elem.textContent = 'x';
+    ifzero = true;
+ }  else {
+    elem.textContent = 'o';
+    ifzero = false;
+ }
 }
