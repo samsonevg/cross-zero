@@ -13,5 +13,5 @@ window.onload = () => {
 
 function onclick(elem)
 {
-    alert("test: " + elem.textContent);
+    elem.textContent = 'x';
 }
