@@ -5,7 +5,7 @@ let ifzero = false;
 let player;
 let playerStepsParagraph;
 
-window.onload = () => {
+window.onload = function() {
     boxes = document.getElementsByClassName("box");
     player = document.getElementById("player");
 
