@@ -39,7 +39,7 @@ p {
     align-items: center;
 }
 
-.por {
+#panel {
     font-size: 45px;
     border: 1px solid black;
     margin: 20px;
@@ -48,4 +48,14 @@ p {
     height: 200px;
     background-color: bisque;
     position: absolute;
+}
+
+#clean__panel {
+    position: absolute;
+    top: 180px;
+}
+
+#clean__panel > button {
+    width: 350px;
+    background-color: bisque;
 }
