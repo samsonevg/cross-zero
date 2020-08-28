@@ -59,3 +59,11 @@ p {
     width: 350px;
     background-color: bisque;
 }
+
+#winner__text {
+    top: 200px;
+    width: 350px;
+    height: 60px;
+    background-color: bisque;
+    border: 1px solid black;
+}

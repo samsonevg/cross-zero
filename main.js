@@ -5,11 +5,13 @@ let ifzero = false;
 let player;
 let playerStepsParagraph;
 let cleanButton;
+let winnerText;
 
 window.onload = function () {
     cleanButton = document.getElementById("clean__button");
     boxes = document.getElementsByClassName("box");
     player = document.getElementById("player");
+    winnerText = document.getElementById("winner__text");
 
     playerStepsParagraph = document.getElementById("player__steps");
     playerStepsParagraph.innerHTML = boxes.length;
@@ -41,17 +43,22 @@ function onClick(elem) {
     minusStep();
 
 
-    //Получить массив боксов по горизонтали => передать полученный массив 
-    //в arrayBoxes и проверить есть ли победитель, и вывести его
+    // массив клеток по вертикали
     const xArray = getXArrayFromBoxes(elem);
-    //Получить массив боксов по вертикали => передать полученный массив
-    //в arrayBoxes и проверить есть ли победитель, и вывести его
+    // массив клеток по горизонтали
     const yArray = getYArrayFromBoxes(elem);
-    //Получить массив боксов по диагонали => передать полученный массив
-    //в arrayBoxes и проверить есть ли победитель, и вывести его
-    alert(getWinnerByZArray(elem));
+
+    const xLineIsWinner = getWinner(xArray);
+    const yLineIsWinner = getWinner(yArray);
+    const zLineIsWinner = getWinnerByZArray(elem);
 
 
+    const isFinish = xLineIsWinner || yLineIsWinner || zLineIsWinner;
+    if (isFinish) {
+        // объявляем победителя
+        winnerText.textContent = 'Победил: ' + isFinish;
+        winnerText.style.display = 'block';
+    }
 
 }
 
@@ -69,18 +76,19 @@ function cleanGameField() {
     }
 
     playerStepsParagraph.innerHTML = boxes.length;
+    winnerText.style.display = 'none';
 }
 
 
-//В arrayBoxes должно лежать 3 элемента
+//return - функция возвращает null, если в массиве нет победителя. Если есть победитель, то вернёт содержимое клетки ('x' либо '0')
 function getWinner(arrayBoxes) {
-    const result = null;
-    const winner = arrayBoxes.every(v => v === arrayBoxes[0]);
+    const winner = arrayBoxes.every(v => v.textContent === arrayBoxes[0].textContent);
     for (const box of arrayBoxes) {
-        if (box.innerHTML = '')
+        if (!box.textContent)
             return null;
     }
-    return winner ? arrayBoxes[0].innerHTML : null;
+
+    return winner ? arrayBoxes[0].textContent : null;
 }
 
 //Передается бокс на который кликнули
@@ -107,20 +115,19 @@ function getYArrayFromBoxes(elem) {
 }
 
 function getWinnerByZArray(elem) {
-    const zPosition = elem.getAttribute("data-z");
     const center = '10';
     const leftHorizontal = '11';
     const rightHorizontal = '12';
 
     let leftHorizontalArray = [];
     for (const box of boxes) {
-        if (box.getAttribute("data-z") == center || leftHorizontal == box.getAttribute("data-z"))
+        if (box.getAttribute("data-z") === center || leftHorizontal === box.getAttribute("data-z"))
             leftHorizontalArray.push(box);
     }
 
     let rightHorizontalArray = [];
     for (const box of boxes) {
-        if (box.getAttribute("data-z") == center || rightHorizontal == box.getAttribute("data-z"))
+        if (box.getAttribute("data-z") === center || rightHorizontal === box.getAttribute("data-z"))
             rightHorizontalArray.push(box);
     }
 
